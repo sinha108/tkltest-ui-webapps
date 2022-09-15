@@ -52,12 +52,12 @@ if [[ $PRODUCTION == "yes"  ]]; then
 		echo "Assigns a name to the running container for production usage!!"
 		exit 1
 	fi
-	docker run -it --workdir=/home/addressbook --name=$CONTAINER_NAME --expose 80 --expose 3306 -p $PORT_APP:80 -p $PORT_DB:3306 -d --entrypoint ./run-services-docker.sh dockercontainervm/addressbook:8.0.0.0 bash
+	docker run -it --name=$CONTAINER_NAME --expose 80 --expose 3306 -p $PORT_APP:80 -p $PORT_DB:3306 -d --entrypoint ./run-services-docker.sh dockercontainervm/addressbook:8.0.0.0 bash
 else
 	if [[ $CONTAINER_NAME != "default" ]]; then
-		docker run -idt --workdir=/home/addressbook --name=$CONTAINER_NAME --expose 80 --expose 3306 -p $PORT_APP:80 -p $PORT_DB:3306 dockercontainervm/addressbook:8.0.0.0 bash
+		docker run -idt --name=$CONTAINER_NAME --expose 80 --expose 3306 -p $PORT_APP:80 -p $PORT_DB:3306 dockercontainervm/addressbook:8.0.0.0 bash
 	else
-		docker run -idt --workdir=/home/addressbook --expose 80 --expose 3306 -p $PORT_APP:80 -p $PORT_DB:3306 dockercontainervm/addressbook:8.0.0.0 bash
+		docker run -idt --expose 80 --expose 3306 -p $PORT_APP:80 -p $PORT_DB:3306 dockercontainervm/addressbook:8.0.0.0 bash
 	fi
 fi
 
